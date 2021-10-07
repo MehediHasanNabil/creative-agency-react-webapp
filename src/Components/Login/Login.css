@@ -1,0 +1,14 @@
+.btnIcon {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.googleIcon {
+  content: "";
+  position: absolute;
+  top: 130px;
+  left: 55px;
+  width: 20px;
+  height: 20px;
+}

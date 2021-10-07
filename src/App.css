@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.alert-position {
+  position: fixed;
+  width: calc(100vh);
+  left: 34%;
+  top: 10%;
+  z-index: 9;
+  animation: mymove 2s;
+}
+
+@keyframes mymove {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: transform 0.1s;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.1s;
+  }
+}
+
+.audio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+}
+
+.loader {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+.responsiveMargin {
+  margin-left: 10rem;
+}
+
+@media (max-width: 775px) {
+  .responsiveMargin {
+    margin-left: 0;
+  }
+}
+
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.serverImg {
+  width: 100%;
+  height: auto;
+}
+
+.serverImgDiv {
+  position: relative;
+  width: 250px;
+  height: auto;
+}
+
+.serverImgBtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 0.8s;
+}
+
+.serverImgDiv:hover .serverImgBtn {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.8s;
+}
+
+.backgroundImageLoading {
+  width: 5%;
+  height: 80px;
+  background-image: url(./images/loader/loading.svg);
+  background-repeat: no-repeat;
+  background-color: #fff;
+}
+
+.backgroundImageLoading:parent {
+  border-radius: 50%;
+}

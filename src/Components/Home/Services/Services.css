@@ -1,0 +1,16 @@
+.cardHover {
+  cursor: pointer;
+  transition: box-shadow 0.4s;
+}
+.cardHover:hover {
+  transition: box-shadow 0.4s;
+  box-shadow: 0px 0px 20px 5px #e5e5e5;
+}
+
+.color {
+  background: linear-gradient(
+    135deg,
+    rgba(150, 251, 195, 0.767) 0%,
+    rgba(249, 245, 134, 0.74) 100%
+  );
+}

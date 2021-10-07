@@ -1,0 +1,8 @@
+.serviceAnimation {
+    transition: transform 0.2s linear;
+}
+
+.serviceAnimation:hover {
+    transition: transform 0.5s linear;
+    transform: translateY(-8px);
+}

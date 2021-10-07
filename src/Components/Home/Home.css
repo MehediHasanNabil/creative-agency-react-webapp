@@ -1,0 +1,17 @@
+.bgImg {
+    background-color: #FBD062;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bgImg::after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom: 160px solid rgba(255, 255, 255);
+    border-left: 2000px solid transparent;
+}

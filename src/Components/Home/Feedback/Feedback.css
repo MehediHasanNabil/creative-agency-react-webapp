@@ -1,0 +1,8 @@
+.scaleEffect {
+    transition: transform 0.5s;
+}
+
+.scaleEffect:hover {
+    transition: transform 0.5s;
+    transform: scale(1.05);
+}

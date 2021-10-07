@@ -1,0 +1,27 @@
+.img {
+  width: 150px;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+@supports (backdrop-filter: blur(40px)) {
+  header {
+    backdrop-filter: blur(40px);
+  }
+}
+
+@supports not (backdrop-filter: blur(40px)) {
+  header {
+    position: static;
+  }
+}
+
+.MuiAppBar-colorPrimary {
+  background-color: rgba(37, 204, 148, 0.7) !important;
+}

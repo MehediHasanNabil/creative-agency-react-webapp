@@ -16,8 +16,10 @@ const Navigation = () => {
     const authValue = stickyValue !== null ? JSON.parse(stickyValue) : "";
     if (window.localStorage.getItem("auth") !== null) {
       setloginUser(authValue);
-    } 
-  });
+    } else {
+      return;
+    }
+  },[]);
 
   const signOut = () => {
     window.localStorage.removeItem("auth");
@@ -52,7 +54,7 @@ const Navigation = () => {
           <Link className="nav-link mx-2 text-center text-dark" to="/">
             Our Team
           </Link>
-          <Link className="nav-link mx-2 text-center text-dark" to="/">
+          <Link className="nav-link mx-2 text-center text-dark" to="/contact">
             Contact us
           </Link>
           {loginUser.name ? (
@@ -81,7 +83,7 @@ const Navigation = () => {
           {admin.map(
             (adminData) =>
               adminData.email === loginUser.email && (
-                <Link
+                <Link key="1"
                   className="nav-link mx-1 bg-info text-light text-center rounded px-4"
                   to="/admin/dashboard"
                 >

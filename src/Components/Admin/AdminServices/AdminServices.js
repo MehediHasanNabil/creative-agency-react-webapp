@@ -16,19 +16,24 @@ import swal from "sweetalert";
 import trash from "../../../images/icons/trash.svg";
 
 const AdminServices = () => {
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "https://pool-rebel-tune.glitch.me";
   const [loginUser, setloginUser] = useContext(UserContext);
-  document.title = "Admin Services";
   const [adminData, setAdminData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [imageFile, setImageFile] = useState([]);
 
   useEffect(() => {
+    document.title = "Admin Services";
+    fetchDataApi();
+    fetchImage();
+  }, []);
+
+  function fetchDataApi() {
     fetch(`${backendUrl}/admin/`, {
       method: "GET",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         authToken: window.localStorage.getItem("authToken"),
       },
     }) // show admin service details
@@ -38,9 +43,9 @@ const AdminServices = () => {
         setLoading(false);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }
 
-  useEffect(() => {
+  function fetchImage() {
     fetch(`${backendUrl}/images`, {
       method: "GET",
       headers: {
@@ -57,7 +62,7 @@ const AdminServices = () => {
         console.error(error);
         swal("", error.message, "error");
       });
-  }, [imageFile]);
+  }
 
   const handleDeletePhoto = (name) => {
     fetch(`${backendUrl}/delete/image/${name}`, {
@@ -69,6 +74,7 @@ const AdminServices = () => {
     })
       .then((response) => response.json())
       .then((result) => {
+        fetchImage();
         swal("", result.message, "success");
       })
       .catch((error) => {
@@ -80,7 +86,7 @@ const AdminServices = () => {
   const deleteData = (e) => {
     e.preventDefault();
     const id = e.target.getAttribute("data-id");
-    console.log(id);
+
     fetch(`${backendUrl}/admin/${id}`, {
       method: "DELETE",
       headers: {
@@ -91,6 +97,7 @@ const AdminServices = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        fetchDataApi();
         swal("", data.message, "success");
         // console.log('Success:', data);
       })

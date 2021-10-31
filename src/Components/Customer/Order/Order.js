@@ -13,19 +13,19 @@ import swal from "sweetalert";
 
 const Order = () => {
   const backendUrl = "https://pool-rebel-tune.glitch.me";
-  document.title = "Order";
   const [loginUser, setloginUser] = useContext(UserContext);
   const [path, setPath] = useState(false);
   const [info, setInfo] = useState({});
   const { title, description, price, imageName } = useParams();
   const { name, email } = loginUser;
 
-  const handleChange = (e) => {
-    const newInfo = { ...info };
-    newInfo[e.target.name] = e.target.value;
-    setInfo(newInfo);
-  };
+  // const handleChange = (e) => {
+  //   const newInfo = { ...info };
+  //   newInfo[e.target.name] = e.target.value;
+  //   setInfo(newInfo);
+  // };
   useEffect(() => {
+    document.title = "Order";
     setInfo({
       name,
       email,
@@ -34,7 +34,7 @@ const Order = () => {
       price,
       imageName, // add file name property
     });
-  }, [info, loginUser]);
+  }, []);
 
   // console.log(info)
 
@@ -127,8 +127,8 @@ const Order = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    onBlur={handleChange}
-                    value={loginUser.name}
+                    readOnly
+                    defaultValue={loginUser.name}
                     name="name"
                     placeholder="Your name / company’s name"
                   />
@@ -136,8 +136,8 @@ const Order = () => {
                 <Form.Group>
                   <Form.Control
                     type="email"
-                    onBlur={handleChange}
-                    value={loginUser.email}
+                    readOnly
+                    defaultValue={loginUser.email}
                     name="email"
                     placeholder="Your email address"
                   />
@@ -145,8 +145,8 @@ const Order = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    onBlur={handleChange}
-                    value={title}
+                    readOnly
+                    defaultValue={title}
                     name="title"
                     placeholder="Service name"
                   />
@@ -154,8 +154,8 @@ const Order = () => {
                 <Form.Group>
                   <Form.Control
                     as="textarea"
-                    onBlur={handleChange}
-                    value={description}
+                    readOnly
+                    defaultValue={description}
                     name="description"
                     rows={3}
                     placeholder="Project Details"
@@ -164,7 +164,7 @@ const Order = () => {
                 <Form.Group>
                   <Form.Control
                     type="text"
-                    onBlur={handleChange}
+                    readOnly
                     value={price}
                     name="price"
                     placeholder="Price"

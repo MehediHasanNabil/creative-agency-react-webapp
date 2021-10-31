@@ -18,7 +18,7 @@ const Services = () => {
       })
       .catch((err) => console.error(err));
   }, []);
-
+  
   return (
     <Container>
       <h2 className="text-center my-5">
@@ -27,7 +27,7 @@ const Services = () => {
       <Row className="text-center mt-5">
         {!loading ? (
           adminService.map((serviceInfo) => (
-            <Col lg={4} ley={serviceInfo._id}>
+            <Col lg={4} key={serviceInfo._id}>
               <Link
                 to={`/customer/order/${serviceInfo.title}/${serviceInfo.description}/${serviceInfo.price}/${serviceInfo.fileName}`}
                 className="text-decoration-none text-dark"
@@ -41,9 +41,7 @@ const Services = () => {
                   />
                   <Card.Body>
                     <Card.Title>{serviceInfo.title}</Card.Title>
-                    <Card.Text style={{ textDecoration: "underline" }}>
-                      We craft stunning and amazing web UI, using a well
-                      drrafted UX to fit your product.
+                    <Card.Text className="service-link">{serviceInfo.description}
                     </Card.Text>
                   </Card.Body>
                 </Card>

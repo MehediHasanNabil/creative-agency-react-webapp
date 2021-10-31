@@ -15,13 +15,17 @@ import trash from "../../../images/icons/trash.svg";
 import swal from "sweetalert";
 
 const AdminDashboard = () => {
-  const backendUrl = "http://localhost:4000";
+  const backendUrl = "https://pool-rebel-tune.glitch.me";
   const [loginUser, setloginUser] = useContext(UserContext);
-  document.title = "Admin Dashboard";
   const [adminData, setAdminData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Admin Dashboard";
+    fetchDataApi();
+  }, []);
+
+  const fetchDataApi = () => {
     fetch(`${backendUrl}/creative-agency/`, {
       method: "GET",
       headers: {
@@ -35,7 +39,7 @@ const AdminDashboard = () => {
         setLoading(false);
       })
       .catch((err) => console.error(err));
-  }, []);
+  };
 
   const optionChange = (e) => {
     const id = e.target.getAttribute("data-id");
@@ -51,7 +55,7 @@ const AdminDashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         swal(data.message, "", "success");
-        console.log("Success:", data);
+        //console.log("Success:", data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -62,7 +66,7 @@ const AdminDashboard = () => {
   const deleteData = (e) => {
     e.preventDefault();
     const id = e.target.getAttribute("data-id");
-    console.log(id);
+    // console.log(id);
     fetch(`${backendUrl}/creative-agency/${id}`, {
       method: "DELETE",
       headers: {
@@ -73,6 +77,7 @@ const AdminDashboard = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        fetchDataApi();
         swal("", data.message, "success");
         // console.log('Success:', data);
       })

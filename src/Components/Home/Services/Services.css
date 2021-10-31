@@ -14,3 +14,7 @@
     rgba(249, 245, 134, 0.74) 100%
   );
 }
+
+.service-link:hover {
+  text-decoration: underline;
+}

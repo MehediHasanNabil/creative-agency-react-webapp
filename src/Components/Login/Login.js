@@ -10,9 +10,11 @@ import "firebase/auth";
 import "firebase/firestore";
 import firebaseConfig from "../../firebaseConfig";
 import { UserContext } from "../../App";
-firebase.initializeApp(firebaseConfig);
 
 const Login = (props) => {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
   const [loginUser, setloginUser] = useContext(UserContext);
   let history = useHistory();
   let location = useLocation();
@@ -22,6 +24,7 @@ const Login = (props) => {
     if (loginUser) {
       window.localStorage.setItem("auth", JSON.stringify(loginUser));
     }
+    console.log("login.js 25");
   }, [loginUser]);
 
   const provider = new firebase.auth.GoogleAuthProvider();
